@@ -1,6 +1,6 @@
 import { NextDeliveryResponse } from './types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api';
 
 export class ApiError extends Error {
   constructor(
@@ -12,7 +12,13 @@ export class ApiError extends Error {
 }
 
 export async function fetchNextDelivery(userId: string): Promise<NextDeliveryResponse> {
-  const response = await fetch(`${API_BASE_URL}/comms/your-next-delivery/${userId}`);
+  const response = await fetch(`${API_BASE_URL}/comms/your-next-delivery/${userId}`, {
+    cache: 'no-store',
+    headers: {
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache',
+    },
+  });
 
   if (!response.ok) {
     throw new ApiError(response.status, 'Request failed');

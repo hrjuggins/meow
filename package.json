@@ -1,6 +1,7 @@
 {
   "name": "katkin-tech-test",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",

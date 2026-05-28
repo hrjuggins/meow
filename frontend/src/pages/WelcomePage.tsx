@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ApiError, fetchNextDelivery } from '../api';
-import { CAT_IMAGE_URL, FREE_GIFT_THRESHOLD } from '../constants';
+import { CAT_IMAGE_URL } from '../constants';
 
 const GBP_FORMATTER = new Intl.NumberFormat('en-GB', {
   style: 'currency',
@@ -29,18 +29,16 @@ export function WelcomePage() {
 
   if (query.isError) {
     const message =
-      query.error instanceof ApiError && (query.error.status === 400 || query.error.status === 404)
+      query.error instanceof ApiError &&
+      (query.error.status === 400 || query.error.status === 404)
         ? "We couldn't load this welcome page."
-        : 'Something went wrong. Please try again.';
+        : "We couldn't reach the API. Check that the backend is running on port 3000.";
 
     return (
       <main className="page page-center">
         <section className="card card-compact">
           <h1>Welcome Page Unavailable</h1>
           <p>{message}</p>
-          <Link className="button button-secondary" to="/">
-            Back to launcher
-          </Link>
         </section>
       </main>
     );
@@ -55,42 +53,45 @@ export function WelcomePage() {
   }
 
   const { title, message, totalPrice, freeGift } = query.data;
-  const spendMore = Math.max(0, FREE_GIFT_THRESHOLD + 0.01 - totalPrice);
 
   return (
-    <main className="page page-welcome">
-      <section className="card">
-        <p className="eyebrow">KatKin</p>
-        <h1>{title}</h1>
-        <p className="lede">{message}</p>
+    <main className="page page-welcome preview-page">
+      <section className="welcome-preview">
+        {freeGift ? <p className="gift-ribbon">FREE GIFT</p> : null}
 
-        <div className="price-panel">
-          <p className="price-label">Total price</p>
-          <p className="price-value">{GBP_FORMATTER.format(totalPrice)}</p>
-        </div>
+        <aside className="welcome-image-panel">
+          <img
+            src={CAT_IMAGE_URL}
+            alt="Cat"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
+          />
+        </aside>
 
-        {freeGift ? (
-          <p className="gift-positive">Free gift included in your next delivery.</p>
-        ) : totalPrice > 0 ? (
-          <p className="gift-neutral">
-            Spend {GBP_FORMATTER.format(spendMore)} more for a free gift.
+        <div className="welcome-content">
+          <h1 className="welcome-title">{title}</h1>
+          <p className="welcome-message">{message}</p>
+          <p className="welcome-price">
+            Total price: {GBP_FORMATTER.format(totalPrice)}
           </p>
-        ) : null}
 
-        <Link className="button button-secondary" to="/">
-          Try another user
-        </Link>
+          <div className="welcome-actions">
+            <button
+              type="button"
+              className="welcome-button welcome-button-primary"
+            >
+              SEE DETAILS
+            </button>
+            <button
+              type="button"
+              className="welcome-button welcome-button-outline"
+            >
+              EDIT DELIVERY
+            </button>
+          </div>
+        </div>
       </section>
-
-      <aside className="image-panel">
-        <img
-          src={CAT_IMAGE_URL}
-          alt="Cat"
-          onError={(event) => {
-            event.currentTarget.style.display = 'none';
-          }}
-        />
-      </aside>
     </main>
   );
 }
