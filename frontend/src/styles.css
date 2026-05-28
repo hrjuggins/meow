@@ -1,16 +1,190 @@
 :root {
-  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
-  color: #2f2540;
-  background: #fff7f3;
+  --cream: #fff8ef;
+  --ink: #2b2531;
+  --accent: #e65240;
+  --accent-soft: #f7d9d4;
+  --panel: #fffdf7;
+  --line: #e9e0d3;
+  --success: #266d3b;
+  --shadow: 0 20px 40px rgba(65, 42, 22, 0.12);
+  font-family: 'Avenir Next', 'Gill Sans', 'Trebuchet MS', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 20%, #ffe7d8 0%, transparent 40%),
+    radial-gradient(circle at 80% 10%, #ffefe5 0%, transparent 35%),
+    var(--cream);
 }
 
-.app-shell {
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+.page {
   min-height: 100vh;
+  padding: 2.5rem 1.25rem;
   display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.page-home,
+.page-welcome {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.page-center {
   place-items: center;
-  font-size: 1.25rem;
+}
+
+.card {
+  width: min(680px, 100%);
+  margin: 0 auto;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.card-compact {
+  width: min(520px, 100%);
+}
+
+.eyebrow {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.lede {
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.actions-row {
+  display: flex;
+}
+
+.id-form {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.id-form label {
+  font-weight: 600;
+}
+
+.id-form input {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #d8ccba;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: #fff;
+}
+
+.button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.1rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.button-secondary {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.error-text {
+  color: #ab2f2f;
+  font-size: 0.88rem;
+}
+
+.price-panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.85rem;
+  background: #fff;
+}
+
+.price-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #7f738f;
+}
+
+.price-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.gift-positive {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.gift-neutral {
+  color: #8e5600;
+  font-weight: 700;
+}
+
+.status-text {
+  font-size: 1.2rem;
+}
+
+.image-panel {
+  width: min(680px, 100%);
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.image-panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 980px) {
+  .page-home,
+  .page-welcome {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  }
+
+  .card,
+  .image-panel {
+    width: 100%;
+  }
 }
