@@ -125,6 +125,52 @@ You can:
 
 _Note_: We aren't expecting an exact 1-to-1 copy of the design, i.e. exact fonts, spacing, or colors. Just get roughly close enough. __Use any random image of a cat__ that you can find.
 
+## Local Runbook (This Solution)
+
+### Install
+
+```bash
+yarn install
+yarn --cwd frontend install
+```
+
+### Run both apps
+
+```bash
+yarn dev
+```
+
+This starts:
+
+- Backend: [http://localhost:3000](http://localhost:3000)
+- Frontend: [http://localhost:5173](http://localhost:5173)
+
+You can also run each app separately:
+
+```bash
+yarn dev:backend
+yarn dev:frontend
+```
+
+### Quick verification
+
+Open:
+
+- [http://localhost:5173](http://localhost:5173) and click "Try sample user", or
+- [http://localhost:5173/welcome/ff535484-6880-4653-b06e-89983ecf4ed5](http://localhost:5173/welcome/ff535484-6880-4653-b06e-89983ecf4ed5)
+
+Sample API check:
+
+- [http://localhost:3000/comms/your-next-delivery/ff535484-6880-4653-b06e-89983ecf4ed5](http://localhost:3000/comms/your-next-delivery/ff535484-6880-4653-b06e-89983ecf4ed5)
+
+### Frontend API base URL override (optional)
+
+The frontend defaults to `http://localhost:3000`.
+To override:
+
+```bash
+VITE_API_BASE_URL=http://localhost:3000 yarn dev:frontend
+```
 
 
 # Submission
