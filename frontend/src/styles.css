@@ -15,7 +15,6 @@
   --border-thin: 1px;
   --border-default: 2px;
   --layout-preview-max: 1200px;
-  --font-s: 0.8rem;
   --font-m: 1.2rem;
   --font-lg: 2rem;
   --pd-xs: 8px;
@@ -83,28 +82,6 @@ p {
 .card-compact {
   width: 100%;
   max-width: 520px;
-}
-
-.button {
-  border: 0;
-  border-radius: var(--radius-full);
-  padding: var(--pd-sm) var(--pd-md);
-  font-weight: 700;
-  font-size: var(--font-m);
-  cursor: pointer;
-  text-decoration: none;
-  width: fit-content;
-}
-
-.button-secondary {
-  background: var(--pink);
-  color: var(--purple);
-}
-
-.gift-neutral {
-  color: var(--purple);
-  font-weight: 700;
-  font-size: var(--font-m);
 }
 
 .welcome-preview {
@@ -216,12 +193,6 @@ p {
   border-color: var(--green);
 }
 
-.back-link {
-  margin-top: 0.1rem;
-  font-size: var(--font-s);
-  color: var(--gray-dark);
-}
-
 .status-text {
   font-size: var(--font-lg);
 }
@@ -288,9 +259,5 @@ p {
     transform: rotate(8deg);
     font-size: var(--font-m);
     padding: var(--pd-sm) var(--pd-lg);
-  }
-
-  .back-link {
-    display: none;
   }
 }
