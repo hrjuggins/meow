@@ -1,4 +1,7 @@
-import { FREE_GIFT_THRESHOLD_PENCE, POUCH_PRICE_PENCE } from './comms.constants';
+import {
+  FREE_GIFT_THRESHOLD_PENCE,
+  POUCH_PRICE_PENCE,
+} from './comms.constants';
 import { Cat } from './comms.types';
 
 export function formatCatNames(names: string[]): string {
@@ -18,7 +21,10 @@ export function formatCatNames(names: string[]): string {
 }
 
 export function calculateTotalPricePence(activeCats: Cat[]): number {
-  return activeCats.reduce((total, cat) => total + POUCH_PRICE_PENCE[cat.pouchSize], 0);
+  return activeCats.reduce(
+    (total, cat) => total + POUCH_PRICE_PENCE[cat.pouchSize],
+    0,
+  );
 }
 
 export function penceToPounds(pence: number): number {

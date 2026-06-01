@@ -1,7 +1,11 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: ['tsconfig.json', 'frontend/tsconfig.json'],
+    project: [
+      'tsconfig.json',
+      'frontend/tsconfig.json',
+      'frontend/tsconfig.node.json',
+    ],
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
@@ -15,7 +19,11 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    'frontend/vite.config.js',
+    'frontend/vite.config.d.ts',
+  ],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
